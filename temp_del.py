@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-
 import shutil
 import os
 import time
-def delo(paths):
+def dif(folders,show=False):
+    # dif : deletes all inside the folders
     tlen=0
     tdel=0
-    for path in paths:
+    if show==True:
+        deleted={'file':[],'folders':[]}
+    for path in folders:
         os.chdir(path)
         tlen+=len(os.listdir())
         print("IN :",os.getcwd())
@@ -15,18 +17,25 @@ def delo(paths):
                 if os.path.isfile(x):
                     os.remove(x)
                     tdel+=1
+                    if show==True:
+                        deleted['file'].append(x)
 
                 else:
                     shutil.rmtree(x)
                     tdel+=1
-
+                    if show==True:
+                        deleted['folders'].append(x)
             except:
                 pass
-    print('deleted: ',tdel," out of total: ",tlen)
+    
+    print('deleted: {} out of total: {} '.format(tdel,tlen))
+    if show==True:
+         print('files deleted : {} \n folders deleted : {} '.format(tuple(deleted['file']),tuple(deleted['folders'])))
 
 def main():
-    if __name__=="__main__":
-        delo(("C:/Windows/Temp","C:/Users/Admin/AppData/Local/Temp"))
-        time.sleep(3)
+        #delo(("C:/Windows/Temp","C:/Users/Admin/AppData/Local/Temp"))
+        dif(('C:/Users/Admin/OneDrive/Desktop/b','C:/Users/Admin/OneDrive/Desktop/a'),show=True)
+        time.sleep(0.5)
+
 if __name__=="__main__":
     main()
