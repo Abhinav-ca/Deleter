@@ -41,7 +41,7 @@ def dif(folders,show=False,na=[]):
 
 def main():
         #delo(("C:/Windows/Temp","C:/Users/Admin/AppData/Local/Temp"))
-        dif(('C:/Users/Admin/OneDrive/Desktop/b','C:/Users/Admin/OneDrive/Desktop/a'),show=True,na=['kacha aloo'])
+        dif(("C:/Windows/Temp","C:/Users/Admin/AppData/Local/Temp"))
         time.sleep(0.5)
 
 if __name__=="__main__":
