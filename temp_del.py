@@ -41,7 +41,10 @@ def dif(folders,show=False,na=[]):
 
 def main():
         #delo(("C:/Windows/Temp","C:/Users/Admin/AppData/Local/Temp"))
-        dif(("C:/Windows/Temp","C:/Users/Admin/AppData/Local/Temp"))
+        try:
+            dif(("C:/Windows/Temp","C:/Users/Admin/AppData/Local/Temp"))
+        except:
+            dif(("/mnt/c/Windows/Temp","/mnt/c/Users/Admin/AppData/Local/Temp"))
         time.sleep(0.5)
 
 if __name__=="__main__":
