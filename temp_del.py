@@ -21,7 +21,6 @@ def dif(folders,show=False,na=[]):
             try:
                 if x not in na:
                     if os.path.isfile(x):
-                    
                         os.remove(x)
                         tdel+=1
                         if show:
