@@ -9,12 +9,21 @@ def dif(folders,show=False,na=[]):
     show : shows the files/folders deleted
     na: enter files not to be deleted
     """
+    folder=[]
+    if type(folders)==str:
+        folder.append(folders)
+    else:
+        folder=folders
     tlen=0
     tdel=0
     if show:
         deleted={'file':[],'folders':[]}
-    for path in folders:
-        os.chdir(path)
+    for path in folder:
+        try: 
+            os.chdir(path)
+        except FileNotFoundError as e:
+            print(e)
+            continue
         tlen+=len(os.listdir())
         print("IN :",os.getcwd())
         for x in os.listdir():
@@ -31,15 +40,15 @@ def dif(folders,show=False,na=[]):
                         tdel+=1
                         if show:
                             deleted['folders'].append(x)
-            except:
-                pass
+            except FileNotFoundError  as e:
+
+                print(e)
     
     print('deleted: {} out of total: {} '.format(tdel,tlen))
     if show:
          print('files deleted : {} \n folders deleted : {} '.format(tuple(deleted['file']),tuple(deleted['folders'])))
 
 def main():
-        #delo(("C:/Windows/Temp","C:/Users/Admin/AppData/Local/Temp"))
         try:
             dif(("C:/Windows/Temp","C:/Users/Admin/AppData/Local/Temp"))
         except:
