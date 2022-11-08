@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
-import shutil
+
+
 import os
+import shutil
 import time
+from winreg import DeleteKey
 def dif(folders,show=False,na=[],returns=True):
     """
     deletes all the files and folders inside the folders
@@ -58,7 +61,6 @@ def main():
             dif(("C:/Windows/Temp","C:/Users/Admin/AppData/Local/Temp"),show=True)
         except:
             dif(("/mnt/c/Windows/Temp","/mnt/c/Users/Admin/AppData/Local/Temp"))
-        time.sleep(0.5)
+        time.sleep(1)
 
-if __name__=="__main__":
-    main()
+main()
