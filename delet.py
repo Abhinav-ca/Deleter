@@ -80,5 +80,5 @@ def main():
                 dif(show=True,argv=True)
         time.sleep(1)
 
-if __name__=='main':
-    main()
+if __name__=='__main__':
+	main()
