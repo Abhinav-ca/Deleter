@@ -76,13 +76,9 @@ def dif(folders=[],show=False,na=[],returns=True,argv=False,argv_n=[]):
          print('files deleted : {} & folders deleted : {} '.format(tuple(deleted['file']),tuple(deleted['folders'])))
         
 def main():
-        if len(sys.argv)==1:
-            try:
-                dif(("C:/Windows/Temp","C:/Users/Admin/AppData/Local/Temp"),show=True)
-            except:
-                dif(("/mnt/c/Windows/Temp","/mnt/c/Users/Admin/AppData/Local/Temp"))
-        else:
+        if len(sys.argv)>1:
                 dif(show=True,argv=True)
         time.sleep(1)
 
-main()
+if __name__=='main':
+    main()
