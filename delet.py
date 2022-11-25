@@ -12,8 +12,12 @@ def dif(folders=[],show=False,na=[],returns=True,argv=False,argv_n=[]):
     show : shows the files/folders deleted
     na: enter files not to be deleted
     returns: also returns the names of files and folders deleted
+    Command Line Parameters
     argv: if argv is True takes the folders from the sys.argv
     argv_n: you can optionally enter the index of the folder in sys.argv
+    Command Line Arguments
+    -tdel: if given -tdel the script will delete the temporary_storage in window 10(optionally you can change the temporary_storage from the main() func)
+    folders: if argv is true you can enter the folders to be deleted in command line(which is automatically true if __name__ is '__main__')
     """
     if folders==[] and argv==False:
        raise TypeError('list of folders is required')
@@ -70,13 +74,19 @@ def dif(folders=[],show=False,na=[],returns=True,argv=False,argv_n=[]):
                             deleted['folders'].append(x)
             except:
                 pass
-    if returns==True:
-        print('deleted: {} out of total: {} '.format(tdel,tlen),end=" ")
-    if show==True and returns==True:
-         print('files deleted : {} & folders deleted : {} '.format(tuple(deleted['file']),tuple(deleted['folders'])))
+    if returns==True and show !=True:
+        return 'deleted: '+str(tdel)+' out of total: '+str(tlen)
+    elif show==True and returns==True:
+        return 'files deleted : '+str(tuple(deleted['file']))+' & folders deleted : '+ str(tuple(deleted['folders']))
         
 def main():
-        if len(sys.argv)>1:
+        if '-tdel' in sys.argv: # remove this line if you want to delete the temporary storage everytime
+
+            try:
+                print(dif(["C:/Windows/Temp","C:/Users/Admin/AppData/Local/Temp"]))
+            except:
+                print(dif(["/mnt/c/Windows/Temp","/mnt/c/Users/Admin/AppData/Local/Temp"]))
+        if len(sys.argv)>1 and '-tdel' not in sys.argv:
                 dif(show=True,argv=True)
         time.sleep(1)
 
