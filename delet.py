@@ -46,7 +46,11 @@ def dif(folders=[],show=False,na=[],returns=True,argv=False,argv_n=[]):
         deleted={'file':[],'folders':[]}
     elif type(folder)==list:
         folder+=folders
+    c_path=os.getcwd()
+    
     for path in folder:
+        path=os.path.abspath(path=path)
+        print(path)
         try: 
             os.chdir(path)
         except FileNotFoundError as fe:
@@ -74,10 +78,11 @@ def dif(folders=[],show=False,na=[],returns=True,argv=False,argv_n=[]):
                             deleted['folders'].append(x)
             except:
                 pass
+        os.chdir(c_path)
     if returns==True and show !=True:
         return 'deleted: '+str(tdel)+' out of total: '+str(tlen)
     elif show==True and returns==True:
-        return 'files deleted : '+str(tuple(deleted['file']))+' & folders deleted : '+ str(tuple(deleted['folders']))
+        return 'deleted: '+str(tdel)+' out of total: '+str(tlen)+ '/n'+'files deleted : '+str(tuple(deleted['file']))+' & folders deleted : '+ str(tuple(deleted['folders']))
         
 def main():
         if '-tdel' in sys.argv: # remove this line if you want to delete the temporary storage everytime
